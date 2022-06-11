@@ -1,0 +1,150 @@
+.header{
+    display: flex;
+    flex-direction: column;
+}
+
+.header__upper-line{
+    padding-left: 170px;
+
+    background-color: black;
+    color: whitesmoke;
+
+    /* font-family: Montserrat; */
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+
+    height: 70px;
+}
+
+.upper-line__set{
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upper-line__info-set{
+    padding: 0;
+    margin: 0;
+    justify-content: left;
+    display: flex;
+    list-style-type: none;
+    
+}
+
+.info-set__item{
+    padding-right: 60px;
+    text-decoration: none;
+}
+
+.info-set__link{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+}
+
+.upper-line__personal-area{
+    padding-right: 170px;
+    display: flex;
+    align-items: center;
+}
+
+.personal-area-link{
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+}
+
+.header__middle-line{
+    height: 90px;
+    background-color: rgba(236, 241, 242, 1);
+    padding-left: 170px;
+    padding-right: 170px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.middle-line__logo-wrapper{
+    height: 50px;
+    width: 190px;
+}
+
+.middle-line__logo-img{
+    object-fit: cover;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.middle-line__search-box{
+    width: 380px;
+    height: 41px;
+    background-color: rgba(7, 7, 7, 0.03);
+    border: 1px rgba(68, 68, 68, 0.5) solid;
+    border-radius: 4px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.search-box__text{
+    margin-left: 5px;
+    color: rgba(68, 68, 68, 0.5);
+}
+
+.middle-line__info-set{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.info-set__location-set{
+    display: flex;
+    align-items: center;
+}
+
+.location-set__location-title{
+    padding-left: 7px;
+    color: black;
+}
+
+.info-set__order-call-set{
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.order-call-set__number{
+    color: black;
+    text-align: center;
+}
+
+.order-call-set__subtitle{
+    color: orangered;
+    font-weight: 700;
+    text-align: center;
+}
+
+.info-set__like-but{
+    cursor: pointer;
+    height: 28px;
+    width: 28px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-set__like-but-img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
