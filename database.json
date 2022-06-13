@@ -1,0 +1,44 @@
+{
+    "items": [
+        {
+            "id:": "item0",
+            "available": "true",
+            "name": "Banana",
+            "categories": ["fruits", "food", "healthy"],
+            "pictures": [
+                "./src/Items/Photos/banana/banana0.jpg",
+                "./src/Items/Photos/banana/banana1.jpg",
+                "./src/Items/Photos/banana/banana2.jpg",
+                "./src/Items/Photos/banana/banana3.jpg",
+                "./src/Items/Photos/banana/banana4.jpg"
+            ],
+            "price": "1,99",
+            "rating": "5",
+            "description": "Suspendisse congue metus et ligula dignissim, eget suscipit ipsum tincidunt. Suspendisse potenti. Donec dictum, dui et aliquet venenatis, nulla augue commodo neque, id euismod velit mauris in lacus. Curabitur convallis mi ut venenatis imperdiet. Maecenas aliquet lectus eu ipsum ultrices aliquet. Duis malesuada ultricies sem eget hendrerit. Phasellus eget dui libero.",
+            "detais:": {
+                "color": "yellow",
+                "country of origin": "Algeria"
+            }
+        },
+        {
+            "id:": "item1",
+            "available": "true",
+            "name": "Apple",
+            "categories": ["fruits", "food", "healthy"],
+            "pictures": [
+                "./src/Items/Photos/apple/apple0.jpg",
+                "./src/Items/Photos/apple/apple1.jpg",
+                "./src/Items/Photos/apple/apple2.jpg",
+                "./src/Items/Photos/apple/apple3.jpg",
+                "./src/Items/Photos/apple/apple4.jpg"
+            ],
+            "price": "1,50",
+            "rating": "5",
+            "description": "Suspendisse congue metus et ligula dignissim, eget suscipit ipsum tincidunt. Suspendisse potenti. Donec dictum, dui et aliquet venenatis, nulla augue commodo neque, id euismod velit mauris in lacus. Curabitur convallis mi ut venenatis imperdiet. Maecenas aliquet lectus eu ipsum ultrices aliquet. Duis malesuada ultricies sem eget hendrerit. Phasellus eget dui libero.",
+            "detais:": {
+                "color": "red",
+                "country of origin": "Ukraine"
+            }
+        }
+    ]
+}
