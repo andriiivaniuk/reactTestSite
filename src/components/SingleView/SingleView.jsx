@@ -48,7 +48,7 @@ function SingleView (props) {
                             </div>
                             {
                                 props.item.available ? <span className='title-set__available'>Available</span> :
-                                <span className='title-set__not-available'>Available</span>
+                                <span className='title-set__not-available'>Not available</span>
                             }
                         </div>
                         <div className='title-set__pic-set'>
@@ -61,6 +61,35 @@ function SingleView (props) {
                         </div>
                     </div> 
                     <div className='line'></div>
+                    <div className='info-set__descrition-set'>
+                        <li className='description-set__item'>
+                            <span className='set-item__name' >Trademark:</span>
+                            <span className='set-item__value' >{props.item.trademark}</span>
+                        </li>
+                        <li className='description-set__item'>
+                            <span className='set-item__name' >Cultivar:</span>
+                            <span className='set-item__value' >{props.item.cultivar}</span>
+                        </li>
+                        <li className='description-set__item'>
+                            <span className='set-item__name' >Country of Origin:</span>
+                            <span className='set-item__value' >{props.item.country}</span>
+                        </li>
+                    </div>
+                    <div className='line'></div>
+                    <div className='info-set__options'>
+                        { props.item.name ? getOptions(props.item.options) : false }
+                    </div>
+                    <div className='line'></div>
+                    <div className='info-set__price-area'>
+                        <div className='price-area__price-bonus-set'>
+                            <span className='price-bonus__price'>
+                                ${props.item.price} <span className='price-units'>per {props.item.units}</span>
+                            </span>
+                            <span>
+                            + { props.item.name ? parseFloat(props.item.price)*1000 / 8 : false } bonuses
+                            </span>
+                        </div>
+                    </div>
                 </article>
             </div>
         </section>
@@ -80,5 +109,29 @@ const getRating = (num) => {
         element.push(<img src={starPic} key = {i}></img>);
     }
 
-    return element;
+    return element = [];
+}
+
+const getOptions = (options) => {
+
+    let rows = [];
+
+    let keys = Object.keys(options);
+    let values = Object.values(options);
+
+    for(let i = 0; i < keys.length; i++){
+        let item = []
+
+        item.push (<h1 className='options-title' key = {Math.random() * 100}>{keys[i]}</h1>);
+        item.push(
+            <select className='options'  key = {Math.random() * 100}>
+                {values[i].map(x => <option key = {Math.random() * 100}>{x}</option>)}
+            </select>
+        ) 
+
+        rows.push(<div key = {Math.random()} className='info-set__options-item'>{item}</div>);
+        
+    }
+
+    return  rows;
 }

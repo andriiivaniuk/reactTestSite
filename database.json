@@ -13,12 +13,17 @@
                 "./src/Items/Photos/banana/banana4.jpg"
             ],
             "price": "1,99",
+            "units": "kg",
             "rating": "5",
             "description": "Suspendisse congue metus et ligula dignissim, eget suscipit ipsum tincidunt. Suspendisse potenti. Donec dictum, dui et aliquet venenatis, nulla augue commodo neque, id euismod velit mauris in lacus. Curabitur convallis mi ut venenatis imperdiet. Maecenas aliquet lectus eu ipsum ultrices aliquet. Duis malesuada ultricies sem eget hendrerit. Phasellus eget dui libero.",
-            "detais:": {
-                "color": "yellow",
-                "country of origin": "Algeria"
+            "trademark": "BANANA INC",
+            "cultivar": "Cavendish",
+            "country": "India",
+            "options": {
+                "color": ["green", "yellow"],
+                "package": ["paper bag", "plastic bag"]
             }
+            
         },
         {
             "id:": "item1",
@@ -33,11 +38,15 @@
                 "./src/Items/Photos/apple/apple4.jpg"
             ],
             "price": "1,50",
+            "units": "kg",
             "rating": "5",
             "description": "Suspendisse congue metus et ligula dignissim, eget suscipit ipsum tincidunt. Suspendisse potenti. Donec dictum, dui et aliquet venenatis, nulla augue commodo neque, id euismod velit mauris in lacus. Curabitur convallis mi ut venenatis imperdiet. Maecenas aliquet lectus eu ipsum ultrices aliquet. Duis malesuada ultricies sem eget hendrerit. Phasellus eget dui libero.",
-            "detais:": {
-                "color": "red",
-                "country of origin": "Ukraine"
+            "trademark": "MEGA APPLE INC",
+            "cultivar": "Gala",
+            "country": "Ukraine",
+            "options": {
+                "color": ["red", "green", "yellow"],
+                "package": ["paper bag", "plastic bag"]
             }
         }
     ]
