@@ -3,9 +3,19 @@ import "./SingleView.css";
 import starPic from "./SingleRes/star-icon.png";
 import scalesPic from "./SingleRes/scales-icon.png";
 import likePic from "./SingleRes/like-icon.png";
+import cartPic from "../Header/HeaderRes/cart-icon.png";
 
 function SingleView (props) {
 
+    const [amount, setAmount] = useState(1);
+    const [currentDesrTab, setDesrTab] = useState(0);
+
+    const descriptionTabsConfig = [
+        "Description",
+        "Specifications",
+        "Reviews",
+        "Shipping"
+    ];
 
     return(
         <>
@@ -90,8 +100,61 @@ function SingleView (props) {
                             </span>
                         </div>
                     </div>
+                    <div className='buy-buttons-set'>
+                        <div className='amount-to-buy-set'>
+                            <button className='change-amount-but' onClick={() => { 
+                                if(amount === 1){return}
+                                    setAmount(amount - 1); 
+                                }}>-</button>
+                            <span className='current-amount'>{amount}</span>
+                            <button className='change-amount-but' onClick={() => setAmount(amount + 1)}>+</button>
+                        </div>
+                        <button className='add-to-cart-but'>
+                            Add to cart
+                            <img className='add-to-cart__cart-pic' src = {cartPic}></img>
+                        </button>
+                        <button className='buy-in-one-click-but'>
+                            Buy in one click
+                        </button>
+                    </div>
                 </article>
             </div>
+            <article className='item-description-tabs'>
+                    {
+                        <nav className='description-tabs__tabs-titles'>
+                            {descriptionTabsConfig.map( (tabName, i) => 
+                                <span className='tabs-titles__title' key = {i + "tab"} onClick={() => setDesrTab(i)} >
+                                    { currentDesrTab === i ? <strong>{tabName}</strong> : <>{tabName}</> }
+                                </span>
+                            )}
+                        </nav>
+                    }
+                    <span className='item-description-tabs__text-container'>
+                        {currentDesrTab === 0 && props.item.description}
+                        {
+                            currentDesrTab === 1 && 
+                        
+                            <div className='text-container__specs-set'>
+                                { Object.keys(props.item.specs).map( (key, index) => <>
+                                    <span className='text-container__spec-title' key = {"title" + index}> 
+                                        {key}
+                                    </span>
+                                    <span className='text-container__spec-text' key = {"text" + index}>
+                                        {props.item.specs[key]}
+                                    </span>
+                                    <div className='line'></div>
+                                    </>
+                                ) }
+                            </div>
+                        }
+                        {
+                            currentDesrTab === 2 && "Reviews"
+                        }
+                        {
+                            currentDesrTab === 3 && "Shipping"
+                        }
+                    </span>
+            </article>
         </section>
         
         </>

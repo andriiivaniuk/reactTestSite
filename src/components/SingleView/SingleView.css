@@ -26,7 +26,8 @@
 
 .pic-set__image-wrapper{
     flex-grow: 1;
-    flex-basis: 20%;
+    flex-basis: 22%;
+    aspect-ratio: 1 / 1;
 }
 
 .pic-set__img{
@@ -151,6 +152,7 @@
 }
 
 .info-set__price-area{
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -173,3 +175,109 @@
     color: gray;
 }
 
+.buy-buttons-set{
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.amount-to-buy-set{
+    display: flex;
+}
+
+.change-amount-but{
+    height: 50px;
+    width: 50px;
+    background-color: black;
+    color: aliceblue;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.current-amount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    background-color: ghostwhite;
+    color: black;
+    
+}
+
+.add-to-cart-but{
+    background-color: rgb(232,170,49);
+    padding-left: 40px;
+    padding-right: 40px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.add-to-cart__cart-pic{
+    height: 18px;
+    width: 18px;
+    filter: invert();
+}
+
+.buy-in-one-click-but{
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: black;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.item-description-tabs{
+    margin-top: 40px;
+    margin-left: 175px;
+    margin-right: 175px;
+
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.description-tabs__tabs-titles{
+    display: flex;
+    gap: 64px;
+}
+
+.tabs-titles__title{
+    cursor: pointer;
+    position: relative;
+}
+
+.title-bar{
+    
+}
+
+
+.item-description-tabs__text-container{
+    display: block;
+    padding-top: 20px;
+}
+
+.text-container__specs-set{
+    display: flex;
+    flex-direction: column;
+}
+
+.text-container__spec-title{
+    font-weight: 700;
+    padding-top: 10px;
+}
+
+.text-container__spec-text{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
