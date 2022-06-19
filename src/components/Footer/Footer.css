@@ -105,5 +105,29 @@
 }
 
 .newsletter-agreement-text{
-    
+
+}
+
+.line{
+    margin-top: 25px;
+    background-color: gainsboro;
+    height: 1px;
+    width: 100%;
+}
+
+.footer-copyright-info{
+    color: gainsboro;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 50%;
+}
+
+.footer-copyright-item{
+    flex-basis: 65%;
+}
+
+.footer-copyright-item-right{
+    flex-basis: 35%;
+    text-align: right;
 }
