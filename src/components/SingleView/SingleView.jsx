@@ -121,13 +121,19 @@ function SingleView (props) {
             </div>
             <article className='item-description-tabs'>
                     {
+                        <>
                         <nav className='description-tabs__tabs-titles'>
                             {descriptionTabsConfig.map( (tabName, i) => 
-                                <span className='tabs-titles__title' key = {i + "tab"} onClick={() => setDesrTab(i)} >
-                                    { currentDesrTab === i ? <strong>{tabName}</strong> : <>{tabName}</> }
-                                </span>
+                                <div className='tabs__title-set'>
+                                    <span className='tabs-titles__title' key = {i + "tab"} onClick={() => setDesrTab(i)} >
+                                        { currentDesrTab === i ? <strong>{tabName}</strong> : <>{tabName}</> }
+                                    </span>
+                                    {currentDesrTab === i && <div className='title-selected-bar'></div>}
+                                </div>
                             )}
                         </nav>
+                        <div className='line'></div>
+                        </>
                     }
                     <span className='item-description-tabs__text-container'>
                         {currentDesrTab === 0 && props.item.description}

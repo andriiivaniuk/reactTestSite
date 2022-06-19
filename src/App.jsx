@@ -2,6 +2,7 @@ import { Component, useState, useEffect } from 'react'
 import './App.css'
 import Header from './components/Header/Header';
 import SingleView from './components/SingleView/SingleView';
+import Footer from './components/Footer/Footer';
 
 function App() {
   
@@ -31,6 +32,7 @@ function App() {
     <div className="App">
       <Header></Header>
       <SingleView item = {items[0]} photos = {items[0].pictures}/>  
+      <Footer></Footer>
     </div>
   )
 }
