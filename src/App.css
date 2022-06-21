@@ -2,8 +2,10 @@
   scroll-behavior: smooth;
   background-color: rgb(254, 254, 254 );
   font-family: 'Montserrat';
+}
+
+body{
   margin: 0;
-  padding: 0;
 }
 
 /* montserrat-200 - latin */

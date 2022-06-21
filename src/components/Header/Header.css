@@ -36,6 +36,7 @@
     justify-content: left;
     display: flex;
     list-style-type: none;
+    gap: 70px;
 }
 
 .info-set__item{

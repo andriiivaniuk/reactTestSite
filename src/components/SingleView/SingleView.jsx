@@ -22,26 +22,14 @@ function SingleView (props) {
         <section className='item'>
             <div className='item__pic-info-set'>
                 <div className='pic-info-set__pic-set'>
-                    <div className='pic-set__main-image-wrapper'>
-                        {props.item.name ? <img src = {props.photos[0]}
-                        className="pic-set__img" alt="item-another-photo" /> : false }
-                    </div>
-                    <div className='pic-set__image-wrapper'>
-                        {props.item.name ? <img src = {props.photos[1]}
-                        className="pic-set__img" alt="item-another-photo" /> : false }
-                    </div>
-                    <div className='pic-set__image-wrapper'>
-                        {props.item.name ? <img src = {props.photos[2]}
-                        className="pic-set__img" alt="item-another-photo" /> : false }
-                    </div>
-                    <div className='pic-set__image-wrapper'>
-                        {props.item.name ? <img src = {props.photos[3]}
-                        className="pic-set__img" alt="item-another-photo" /> : false }
-                    </div>
-                    <div className='pic-set__image-wrapper'>
-                        {props.item.name ? <img src = {props.photos[4]}
-                        className="pic-set__img" alt="item-another-photo" /> : false }
-                    </div>
+                    {
+                        props.item.name &&
+                        props.photos.map((photo, i) => 
+                             <div className = {i === 0 ?  'pic-set__main-image-wrapper' : "pic-set__image-wrapper"}>
+                                <img src={photo}
+                                className="pic-set__img" alt="item-another-photo" /> 
+                            </div> )
+                    }
                 </div>
                 <article className='pic-info-set__info-set'>
                     <div className='info-set__title-set'>
@@ -175,10 +163,10 @@ const getRating = (num) => {
     let element = [];
 
     for(let i = 0; i < num; i++){
-        element.push(<img src={starPic} key = {i}></img>);
+        element.push(<img src = {starPic} alt = "star" key = {Math.random()}/>);
     }
 
-    return element = [];
+    return element;
 }
 
 const getOptions = (options) => {

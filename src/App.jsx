@@ -3,6 +3,8 @@ import './App.css'
 import Header from './components/Header/Header';
 import SingleView from './components/SingleView/SingleView';
 import Footer from './components/Footer/Footer';
+import MultiView from './components/MultiView/MultiView';
+import ItemCard from './components/ItemCard/ItemCard';
 
 function App() {
   
@@ -31,6 +33,7 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
+      <MultiView catalog = {items}></MultiView>
       <SingleView item = {items[0]} photos = {items[0].pictures}/>  
       <Footer></Footer>
     </div>
