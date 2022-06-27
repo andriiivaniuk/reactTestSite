@@ -8,11 +8,12 @@ import ItemCard from './components/ItemCard/ItemCard';
 
 function App() {
   
-  let [items, setItems] = useState([{}]);
+  let [items, setItems] = useState([{},{}]);
 
   useEffect(() => {
     fetchStorage();
   }, []);
+
 
   const fetchStorage = async () => {
 
@@ -20,6 +21,7 @@ function App() {
       let storageProm = await fetch('http://localhost:3100/items/');
       if(storageProm.ok){
           let Items = await storageProm.json();
+
           setItems(Items);
           console.log(Items);
       }
@@ -34,7 +36,7 @@ function App() {
     <div className="App">
       <Header></Header>
       <MultiView catalog = {items}></MultiView>
-      <SingleView item = {items[0]} photos = {items[0].pictures}/>  
+      <SingleView item = {items[1]} photos = {items[1].pictures}/>  
       <Footer></Footer>
     </div>
   )

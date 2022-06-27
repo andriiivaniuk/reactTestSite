@@ -40,7 +40,7 @@ export function ItemCard (props){
             <div className='line'></div>
             <div className='price-set'>
                 <span className='price'>
-                    {props.item.price}
+                    {props.item.price} $
                 </span>
                 <div className='set__pics-set'>
                     <img className='pics-set-pic' src={likePic} alt="" />
