@@ -7,7 +7,7 @@ import cartPic from "./ItemCardRes/cart-icon.png";
 
 export function ItemCard (props){
     
-    return(
+    return(<> { props.item &&
         <div className='item-card'>
             <div className='card-pic-wrapper'> 
                 {props.item.name &&
@@ -26,7 +26,6 @@ export function ItemCard (props){
                     {props.item.country}
                 </span>
             </div>
-            {props.item.name ?
                 <div className='info-set__review-set'>
                     <div className='rating'>
                         {getRating(props.item.rating)}
@@ -35,8 +34,7 @@ export function ItemCard (props){
                     <span className='info-set__item'>
                         {props.item.reviews}
                     </span>
-                </div> : false
-            }
+                </div>
             <div className='line'></div>
             <div className='price-set'>
                 <span className='price'>
@@ -51,7 +49,8 @@ export function ItemCard (props){
                 Add to cart
                 <img src={cartPic} className = "cart-pic" alt="" />
             </button>
-        </div>
+        </div> }
+        </>
     )
 }
 

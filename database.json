@@ -1,7 +1,7 @@
 {
     "items": [
         {
-            "id:": "item0",
+            "id": "item0",
             "available": "true",
             "name": "Banana",
             "categories": ["fruits", "food", "healthy"],
@@ -32,7 +32,7 @@
             
         },
         {
-            "id:": "item1",
+            "id": "item1",
             "available": "true",
             "name": "Apple",
             "categories": ["fruits", "food", "healthy"],

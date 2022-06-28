@@ -8,7 +8,7 @@ import ItemCard from './components/ItemCard/ItemCard';
 
 function App() {
   
-  let [items, setItems] = useState([{},{}]);
+  let [items, setItems] = useState([]);
 
   useEffect(() => {
     fetchStorage();
@@ -36,7 +36,7 @@ function App() {
     <div className="App">
       <Header></Header>
       <MultiView catalog = {items}></MultiView>
-      <SingleView item = {items[1]} photos = {items[1].pictures}/>  
+      {items.length && <SingleView item = {items[0]} photos = {items[0].pictures}/> } 
       <Footer></Footer>
     </div>
   )

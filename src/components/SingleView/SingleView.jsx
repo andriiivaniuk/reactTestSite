@@ -23,10 +23,10 @@ function SingleView (props) {
             <div className='item__pic-info-set'>
                 <div className='pic-info-set__pic-set'>
                     {
-                        props.item.name &&
+                        props.item &&
                         props.photos.map((photo, i) => 
-                             <div className = {i === 0 ?  'pic-set__main-image-wrapper' : "pic-set__image-wrapper"}>
-                                <img src={photo}
+                             <div key = {Math.random()} className = {i === 0 ?  'pic-set__main-image-wrapper' : "pic-set__image-wrapper"}>
+                                <img key = {Math.random()} src={photo}
                                 className="pic-set__img" alt="item-another-photo" /> 
                             </div> )
                     }
@@ -113,7 +113,7 @@ function SingleView (props) {
                         <nav className='description-tabs__tabs-titles'>
                             {descriptionTabsConfig.map( (tabName, i) => 
                                 <div className='tabs__title-set'>
-                                    <span className='tabs-titles__title' key = {i + "tab"} onClick={() => setDesrTab(i)} >
+                                    <span className='tabs-titles__title' key = {Math.random()} onClick={() => setDesrTab(i)} >
                                         { currentDesrTab === i ? <strong>{tabName}</strong> : <>{tabName}</> }
                                     </span>
                                     {currentDesrTab === i && <div className='title-selected-bar'></div>}
@@ -129,11 +129,11 @@ function SingleView (props) {
                             currentDesrTab === 1 && 
                         
                             <div className='text-container__specs-set'>
-                                { Object.keys(props.item.specs).map( (key, index) => <>
-                                    <span className='text-container__spec-title' key = {"title" + index}> 
+                                { Object.keys(props.item.specs).map( (key) => <>
+                                    <span className='text-container__spec-title' key = {Math.random()}> 
                                         {key}
                                     </span>
-                                    <span className='text-container__spec-text' key = {"text" + index}>
+                                    <span className='text-container__spec-text' key = {Math.random()}>
                                         {props.item.specs[key]}
                                     </span>
                                     <div className='line'></div>
