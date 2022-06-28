@@ -81,7 +81,9 @@ function Header (props) {
                     </div>
                     <div className='info-set__cart-set'>
                         <div className='cart-set__cart-wrapper'>
-                            <img src={cartPic} alt="" />
+                            <a className='cart-wraper__basket-link' href="/basket/">
+                                <img src={cartPic} alt="" />
+                            </a>
                             <div className='cart-set__indicator-circle'>
                                 <span className='cart-set__indicator-num'>
                                     0
@@ -102,7 +104,7 @@ function Header (props) {
             </div>
             <div className='header__lower-line'>
                 <nav className='lower-line__nav'>
-                    <a href="" className='nav-item'>
+                    <a href="http://localhost:3000/products/" className='nav-item'>
                         Catalog
                     </a>
                     <a href="" className='nav-item'>

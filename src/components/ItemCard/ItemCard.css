@@ -12,6 +12,8 @@
     padding-top: 20px;
 
     box-sizing: border-box;
+
+    text-decoration: none;
 }
 
 .card-pic-wrapper{

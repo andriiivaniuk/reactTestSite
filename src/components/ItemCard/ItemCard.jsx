@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "./ItemCard.css"
 import starPic from "./ItemCardRes/star-icon.png";
 import likePic from "./ItemCardRes/like-icon.png";
 import scalesPic from "./ItemCardRes/scales-icon.png";
 import cartPic from "./ItemCardRes/cart-icon.png";
 
+import { Link } from 'react-router-dom';
+
 export function ItemCard (props){
     
-    return(<> { props.item &&
-        <div className='item-card'>
-            <div className='card-pic-wrapper'> 
+    return(
+        <div  className='item-card'>
+            <Link className='card-pic-wrapper'  to={`/products/${props.item.id}`}> 
                 {props.item.name &&
                     <img className='card-pic-img' src={props.item.pictures[0]} alt="" />
                 }    
-            </div>
+            </Link>
             <span className='card-name'>
                 {props.item.name}
             </span>
@@ -49,8 +51,7 @@ export function ItemCard (props){
                 Add to cart
                 <img src={cartPic} className = "cart-pic" alt="" />
             </button>
-        </div> }
-        </>
+        </div> 
     )
 }
 

@@ -6,11 +6,11 @@
             "name": "Banana",
             "categories": ["fruits", "food", "healthy"],
             "pictures": [
-                "./src/Items/Photos/banana/banana0.jpg",
-                "./src/Items/Photos/banana/banana1.jpg",
-                "./src/Items/Photos/banana/banana2.jpg",
-                "./src/Items/Photos/banana/banana3.jpg",
-                "./src/Items/Photos/banana/banana4.jpg"
+                "/src/Items/Photos/banana/banana0.jpg",
+                "/src/Items/Photos/banana/banana1.jpg",
+                "/src/Items/Photos/banana/banana2.jpg",
+                "/src/Items/Photos/banana/banana3.jpg",
+                "/src/Items/Photos/banana/banana4.jpg"
             ],
             "price": "1,99",
             "units": "kg",
@@ -37,11 +37,11 @@
             "name": "Apple",
             "categories": ["fruits", "food", "healthy"],
             "pictures": [
-                "./src/Items/Photos/apple/apple0.jpg",
-                "./src/Items/Photos/apple/apple1.jpg",
-                "./src/Items/Photos/apple/apple2.jpg",
-                "./src/Items/Photos/apple/apple3.jpg",
-                "./src/Items/Photos/apple/apple4.jpg"
+                "/src/Items/Photos/apple/apple0.jpg",
+                "/src/Items/Photos/apple/apple1.jpg",
+                "/src/Items/Photos/apple/apple2.jpg",
+                "/src/Items/Photos/apple/apple3.jpg",
+                "/src/Items/Photos/apple/apple4.jpg"
             ],
             "price": "1,50",
             "units": "kg",

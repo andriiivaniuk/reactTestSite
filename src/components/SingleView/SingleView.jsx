@@ -1,194 +1,42 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
+import { useParams } from 'react-router';
+import Product from './Product';
 import "./SingleView.css";
-import starPic from "./SingleRes/star-icon.png";
-import scalesPic from "./SingleRes/scales-icon.png";
-import likePic from "./SingleRes/like-icon.png";
-import cartPic from "../Header/HeaderRes/cart-icon.png";
 
 function SingleView (props) {
+    const {id} = useParams();
 
-    const [amount, setAmount] = useState(1);
-    const [currentDesrTab, setDesrTab] = useState(0);
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    const descriptionTabsConfig = [
-        "Description",
-        "Specifications",
-        "Reviews",
-        "Shipping"
-    ];
+    useEffect(() => {
+        setLoading(true);
+        fetch(`http://localhost:3100/items/${id}`)
+            .then(response => {
+                if(response.ok) {
+                    return response.json();
+                }
+
+                throw new Error('fetch failed');
+            })
+            .then(product => {
+                setProduct(product);
+            })
+            .catch((e) => {
+                console.log(e);
+            })
+            .finally(() => {
+                setLoading(false);
+            })
+    }, []);
+
 
     return(
         <>
-        <section className='item'>
-            <div className='item__pic-info-set'>
-                <div className='pic-info-set__pic-set'>
-                    {
-                        props.item &&
-                        props.photos.map((photo, i) => 
-                             <div key = {Math.random()} className = {i === 0 ?  'pic-set__main-image-wrapper' : "pic-set__image-wrapper"}>
-                                <img key = {Math.random()} src={photo}
-                                className="pic-set__img" alt="item-another-photo" /> 
-                            </div> )
-                    }
-                </div>
-                <article className='pic-info-set__info-set'>
-                    <div className='info-set__title-set'>
-                        <div className='title-set__title-info'>
-                            <div className='title-info__title-stars-set'>
-                                <span className='title-stars-set__title'>
-                                    {props.item.name}
-                                </span>
-                                { props.item.name ? 
-                                    <div className='title-info__title-stars-set'>
-                                        { getRating(props.item.rating) }
-                                    </div> : false
-                                }
-                            </div>
-                            {
-                                props.item.available ? <span className='title-set__available'>Available</span> :
-                                <span className='title-set__not-available'>Not available</span>
-                            }
-                        </div>
-                        <div className='title-set__pic-set'>
-                            <div className='title-set__pic-wrapper'>
-                                <img src={scalesPic} alt="add-to-compare" />
-                            </div>
-                            <div className='title-set__pic-wrapper'>
-                                <img src={likePic} alt="add-to-fav" />
-                            </div>
-                        </div>
-                    </div> 
-                    <div className='line'></div>
-                    <div className='info-set__descrition-set'>
-                        <li className='description-set__item'>
-                            <span className='set-item__name' >Trademark:</span>
-                            <span className='set-item__value' >{props.item.trademark}</span>
-                        </li>
-                        <li className='description-set__item'>
-                            <span className='set-item__name' >Cultivar:</span>
-                            <span className='set-item__value' >{props.item.cultivar}</span>
-                        </li>
-                        <li className='description-set__item'>
-                            <span className='set-item__name' >Country of Origin:</span>
-                            <span className='set-item__value' >{props.item.country}</span>
-                        </li>
-                    </div>
-                    <div className='line'></div>
-                    <div className='info-set__options'>
-                        { props.item.name ? getOptions(props.item.options) : false }
-                    </div>
-                    <div className='line'></div>
-                    <div className='info-set__price-area'>
-                        <div className='price-area__price-bonus-set'>
-                            <span className='price-bonus__price'>
-                                ${props.item.price} <span className='price-units'>per {props.item.units}</span>
-                            </span>
-                            <span>
-                            + { props.item.name ? parseFloat(props.item.price)*1000 / 8 : false } bonuses
-                            </span>
-                        </div>
-                    </div>
-                    <div className='buy-buttons-set'>
-                        <div className='amount-to-buy-set'>
-                            <button className='change-amount-but' onClick={() => { 
-                                if(amount === 1){return}
-                                    setAmount(amount - 1); 
-                                }}>-</button>
-                            <span className='current-amount'>{amount}</span>
-                            <button className='change-amount-but' onClick={() => setAmount(amount + 1)}>+</button>
-                        </div>
-                        <button className='add-to-cart-but'>
-                            Add to cart
-                            <img className='add-to-cart__cart-pic' src = {cartPic}></img>
-                        </button>
-                        <button className='buy-in-one-click-but'>
-                            Buy in one click
-                        </button>
-                    </div>
-                </article>
-            </div>
-            <article className='item-description-tabs'>
-                    {
-                        <>
-                        <nav className='description-tabs__tabs-titles'>
-                            {descriptionTabsConfig.map( (tabName, i) => 
-                                <div className='tabs__title-set'>
-                                    <span className='tabs-titles__title' key = {Math.random()} onClick={() => setDesrTab(i)} >
-                                        { currentDesrTab === i ? <strong>{tabName}</strong> : <>{tabName}</> }
-                                    </span>
-                                    {currentDesrTab === i && <div className='title-selected-bar'></div>}
-                                </div>
-                            )}
-                        </nav>
-                        <div className='line'></div>
-                        </>
-                    }
-                    <span className='item-description-tabs__text-container'>
-                        {currentDesrTab === 0 && props.item.description}
-                        {
-                            currentDesrTab === 1 && 
-                        
-                            <div className='text-container__specs-set'>
-                                { Object.keys(props.item.specs).map( (key) => <>
-                                    <span className='text-container__spec-title' key = {Math.random()}> 
-                                        {key}
-                                    </span>
-                                    <span className='text-container__spec-text' key = {Math.random()}>
-                                        {props.item.specs[key]}
-                                    </span>
-                                    <div className='line'></div>
-                                    </>
-                                ) }
-                            </div>
-                        }
-                        {
-                            currentDesrTab === 2 && "Reviews"
-                        }
-                        {
-                            currentDesrTab === 3 && "Shipping"
-                        }
-                    </span>
-            </article>
-        </section>
-        
+        <Product product={product} loading={loading}></Product>
         </>
     )
 
 }
 
 export default SingleView;
-
-const getRating = (num) => {
-
-    let element = [];
-
-    for(let i = 0; i < num; i++){
-        element.push(<img src = {starPic} alt = "star" key = {Math.random()}/>);
-    }
-
-    return element;
-}
-
-const getOptions = (options) => {
-
-    let rows = [];
-
-    let keys = Object.keys(options);
-    let values = Object.values(options);
-
-    for(let i = 0; i < keys.length; i++){
-        let item = []
-
-        item.push (<h1 className='options-title' key = {Math.random() * 100}>{keys[i]}</h1>);
-        item.push(
-            <select className='options'  key = {Math.random() * 100}>
-                {values[i].map(x => <option key = {Math.random() * 100}>{x}</option>)}
-            </select>
-        ) 
-
-        rows.push(<div key = {Math.random()} className='info-set__options-item'>{item}</div>);
-        
-    }
-
-    return  rows;
-}

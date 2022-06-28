@@ -181,6 +181,11 @@
     cursor: pointer;
 }
 
+.cart-wraper__basket-link{
+    text-decoration: none;
+    display: block;
+}
+
 .cart-set__img{
     display: block;
     object-fit: contain;
