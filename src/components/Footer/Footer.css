@@ -1,7 +1,8 @@
 .footer{
+    box-sizing: border-box;
     padding-top: 100px;
     padding-bottom: 100px;
-    margin-top: 150px;
+    
     background-color: black;
     padding-left: 175px;
     padding-right: 175px;

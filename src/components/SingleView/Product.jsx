@@ -100,7 +100,7 @@ function Product({product}) {
                             <span className='current-amount'>{amount}</span>
                             <button className='change-amount-but' onClick={() => setAmount(amount + 1)}>+</button>
                         </div>
-                        <button className='add-to-cart-but'>
+                        <button className='add-to-cart-but' onClick={() => addItemToStorage(product.id, amount)}>
                             Add to cart
                             <img className='add-to-cart__cart-pic' src = {cartPic}></img>
                         </button>
@@ -158,6 +158,24 @@ function Product({product}) {
 }
 
 export default withLoader(Product);
+
+const addItemToStorage = (id, amount) => {
+    let currentBasket = JSON.parse(localStorage.getItem("basket"));
+
+    if(localStorage.length === 0){
+        localStorage.setItem("basket", JSON.stringify({
+            [id]: amount
+        }));
+    }
+    else{
+        localStorage.setItem("basket", JSON.stringify(Object.assign(currentBasket,  {
+            [id]: currentBasket[id] + amount
+        })));
+    }
+
+    console.log(localStorage.getItem("basket"));
+}
+
 
 const getRating = (num) => {
 

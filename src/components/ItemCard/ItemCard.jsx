@@ -47,7 +47,7 @@ export function ItemCard (props){
                     <img className='pics-set-pic'src={scalesPic} alt="" />
                 </div>
             </div>
-            <button className='card__add-to-cart-but'>
+            <button className='card__add-to-cart-but' onClick={() => addItemToStorage(props.item.id)}>
                 Add to cart
                 <img src={cartPic} className = "cart-pic" alt="" />
             </button>
@@ -56,6 +56,23 @@ export function ItemCard (props){
 }
 
 export default ItemCard;
+
+const addItemToStorage = (id) => {
+    let currentBasket = JSON.parse(localStorage.getItem("basket"));
+
+    if(localStorage.length === 0){
+        localStorage.setItem("basket", JSON.stringify({
+            [id]: 1
+        }));
+    }
+    else{
+        localStorage.setItem("basket", JSON.stringify(Object.assign(currentBasket,  {
+            [id]: currentBasket[id] ? currentBasket[id] + 1 : 1
+        })));
+    }
+
+    console.log(localStorage.getItem("basket"));
+}
 
 const getRating = (num) => {
 
