@@ -62,7 +62,7 @@
     gap: 5px;
 }
 
-.line{
+.item-card .line{
     background-color: gainsboro;
     height: 1px;
     width: 100%;
