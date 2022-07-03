@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import withLoader from "../../hocs/withLoader/withLoader";
 import "./Basket.css"
 import { useEffect } from "react";
+import { useRef } from "react";
 
 export const BasketList = ({products, currentBasket}) => {
 
@@ -9,8 +10,23 @@ export const BasketList = ({products, currentBasket}) => {
         return null;
     }
 
+    const [basketSum, setBasketSum] = useState(0);
     const [basket, setBasket] = useState(currentBasket);
-    console.log(basket);
+
+    useEffect(() => {
+
+        let finalSum = 0;
+        const basketKeys = Object.keys(basket);
+
+        for(let i = 0; i < basketKeys.length; i++) {
+            let currentProd = products.find(elem => elem.id === basketKeys[i]);
+
+            finalSum += (basket[basketKeys[i]] * currentProd.price);
+        }
+
+        setBasketSum(finalSum);
+        
+    }, [basket]);
 
     const changeBasketAmount = (id, ifAdd) => {
         if(!ifAdd && currentBasket[id] == 1) {
@@ -72,6 +88,9 @@ export const BasketList = ({products, currentBasket}) => {
             )}
 
             <div className="line"></div>
+            <span className="basket__final-sum">
+                Final sum: ${basketSum.toFixed(2)}
+            </span>
         </div>
         </>
     )

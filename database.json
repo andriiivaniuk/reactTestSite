@@ -60,6 +60,36 @@
                 "Appearance and flavour": "Gala apples are non-uniform in colour, usually vertically striped or mottled, with overall orange colour.[1] They are sweet, fine textured, and aromatic,[1] and in addition to being eaten raw and cooked are especially suitable for creating sauces.",
                 "Season": "Gala apples are grown from May through September in the northern hemisphere, but, like most apples, are available almost all year through the use of cold storage and controlled atmosphere storage."
             }
+        },
+        {
+            "id": "item2",
+            "available": "true",
+            "name": "Broccoli",
+            "categories": ["vegetables", "food", "greens", "healthy"],
+            "pictures": [
+                "/src/Items/Photos/broccoli/broccoli0.jpg",
+                "/src/Items/Photos/broccoli/broccoli1.jpg",
+                "/src/Items/Photos/broccoli/broccoli2.jpg",
+                "/src/Items/Photos/broccoli/broccoli3.jpg",
+                "/src/Items/Photos/broccoli/broccoli4.jpg"
+            ],
+            "price": "2.45",
+            "units": "kg",
+            "rating": "4",
+            "reviews": "7",
+            "description": "Broccoli (Brassica oleracea var. italica) is an edible green plant in the cabbage family (family Brassicaceae, genus Brassica) whose large flowering head, stalk and small associated leaves are eaten as a vegetable. Broccoli is classified in the Italica cultivar group of the species Brassica oleracea. Broccoli has large flower heads, usually dark green, arranged in a tree-like structure branching out from a thick stalk which is usually light green. The mass of flower heads is surrounded by leaves. Broccoli resembles cauliflower, which is a different but closely related cultivar group of the same Brassica species.",
+            "trademark": "Super Broccoli Corp.",
+            "cultivar": "Brassica oleracea",
+            "country": "China",
+            "options": {
+                "color": ["green", "yellow"],
+                "package": ["paper bag", "plastic bag" , "paper box"]
+            },
+            "specs": {
+                "General info": "Broccoli resulted from breeding of landrace Brassica crops in the northern Mediterranean starting in about the sixth century BCE.[6] Broccoli has its origins in primitive cultivars grown in the Roman Empire and was most likely improved via artificial selection in the southern Italian Peninsula or in Sicily.[7][8][9] Broccoli was spread to northern Europe by the 18th century and brought to North America in the 19th century by Italian immigrants.[8] After the Second World War, breeding of United States and Japanese F1 hybrids increased yields, quality, growth speed, and regional adaptation, which produced the cultivars that have been the most popular since then: 'Premium Crop', 'Packman', and 'Marathon'.[8]",
+                "Appearance and flavour": "It is eaten either raw or cooked. Broccoli is a particularly rich source of vitamin C and vitamin K. Contents of its characteristic sulfur-containing glucosinolate compounds, isothiocyanates and sulforaphane, are diminished by boiling but are better preserved by steaming, microwaving or stir-frying.[3]",
+                "Season": "The majority of broccoli cultivars are cool-weather crops that do poorly in hot summer weather. Broccoli grows best when exposed to an average daily temperature between 18 and 23 °C (64 and 73 °F).[18][19] When the cluster of flowers, also referred to as a head of broccoli, appear in the center of the plant, the cluster is generally green. Garden pruners or shears are used to cut the head about 25 mm (1 in) from the tip. Broccoli should be harvested before the flowers on the head bloom bright yellow.[20]"
+            }
         }
     ]
 }

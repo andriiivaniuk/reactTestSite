@@ -104,3 +104,9 @@
     height: 1px;
     width: 100%;
 }
+
+.basket__final-sum{
+    display: block;
+    font-size: 1.4em;
+    font-weight: 500;
+}
