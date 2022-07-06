@@ -4,6 +4,8 @@ import ItemCard from '../ItemCard/ItemCard';
 import Filter from '../Filter/Filter';
 import ProductsList from './ProductsList';
 
+const POSSIBLE_FILTERS = ["categories", "country", "available" ];
+
 export function MultiView (props) {
 
     useEffect(() => {
@@ -13,6 +15,7 @@ export function MultiView (props) {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [filterOptionsObj, setFilterOptionsObj] = useState({});
 
     const fetchStorage = async () => {
 
@@ -23,8 +26,8 @@ export function MultiView (props) {
 
                 let items = await storageProm.json();
                 setProducts(items);
-                console.log(items);
-
+                // console.log(items);
+                setFilterOptionsObj(Object.assign({}, formFiltersArr(items)));
             }
         }
         catch {
@@ -44,7 +47,12 @@ export function MultiView (props) {
                         <div className='filters-title'>
                             Goods filter
                         </div>
-                        <Filter></Filter>
+                        
+                        {Object.keys(filterOptionsObj).length && 
+                            POSSIBLE_FILTERS.map((filter) => 
+                                <Filter title = {filter} options = {filterOptionsObj[filter]} key = {Math.random()}></Filter>
+                            )
+                        }
                     </div>
                     <ProductsList products={products} loading={loading}></ProductsList>
                 </section>
@@ -55,3 +63,29 @@ export function MultiView (props) {
 }
 
 export default MultiView;
+
+const formFiltersArr = (items) => {
+    let finalObj = {};
+
+    POSSIBLE_FILTERS.forEach((filterTitle) => {
+
+        let filterTitleOption = new Set();
+
+        for(let i = 0; i < items.length; i++ ){
+           
+            if (typeof items[i][filterTitle] === 'object') {
+                for(let j = 0; j < items[i][filterTitle].length; j++){
+                    filterTitleOption.add(items[i][filterTitle][j]);
+                }
+            } else {
+                filterTitleOption.add(items[i][filterTitle]);
+            }
+        }
+
+        finalObj[filterTitle] = Array.from(filterTitleOption);
+
+    });
+
+    console.log(finalObj);
+    return finalObj;
+}

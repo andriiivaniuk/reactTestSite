@@ -48,7 +48,7 @@ function Product({product}) {
                                 </div>
                             </div>
                             {
-                                product.available ? <span className='title-set__available'>Available</span> :
+                                product.available === "true" ? <span className='title-set__available'>Available</span> :
                                 <span className='title-set__not-available'>Not available</span>
                             }
                         </div>
