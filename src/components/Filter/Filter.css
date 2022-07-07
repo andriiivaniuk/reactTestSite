@@ -56,8 +56,8 @@
 }
 
 .set__checkbox-component{
-    height: 12px;
-    width: 12px;
+    height: 18px;
+    width: 18px;
     border: solid 1px orange;
     position: relative;
     border-radius: 3px;
@@ -69,19 +69,19 @@
 .checkbox-ckeck{
     position: absolute;
 
-    height: 8px;
-    width: 8px;
+    height: 14px;
+    width: 14px;
     background-color: orange;
     border-radius: 2px;
-    left: 2px;
-    top: 2px;
-
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
 }
 
 
 .option-name{
     padding-left: 15px;
-    font-weight: 400;
+    font-weight: 500;
     text-transform: capitalize;
 }

@@ -8,14 +8,29 @@ const POSSIBLE_FILTERS = ["categories", "country", "available" ];
 
 export function MultiView (props) {
 
-    useEffect(() => {
-        setLoading(true);
-        fetchStorage();
-    }, []);
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [filterOptionsObj, setFilterOptionsObj] = useState({});
+    const [selectedFilters, setSelectedFilters] = useState({});
+    const [openFilters, setOpenFilters] = useState({});
+
+    useEffect(() => {
+        setLoading(true);
+        fetchStorage();
+
+        for(let i = 0 ; i < POSSIBLE_FILTERS.length; i++) {
+            setSelectedFilters(Object.assign(selectedFilters, {[POSSIBLE_FILTERS[i]]: [] }));
+            setOpenFilters(Object.assign(openFilters, {[POSSIBLE_FILTERS[i]]: true}));
+        }
+        
+        console.log(openFilters);
+
+    }, []);
+
+    useEffect(() => {
+        console.log(selectedFilters);
+    }, [selectedFilters]);
 
     const fetchStorage = async () => {
 
@@ -43,18 +58,27 @@ export function MultiView (props) {
             <>
             {products &&
                 <section className='multi-page'>
-                    <div className='filters-column'>
+                    <div className='filters-column'>    
                         <div className='filters-title'>
-                            Goods filter
+                            Goods filters
                         </div>
                         
                         {Object.keys(filterOptionsObj).length && 
                             POSSIBLE_FILTERS.map((filter) => 
-                                <Filter title = {filter} options = {filterOptionsObj[filter]} key = {Math.random()}></Filter>
+                                <Filter
+                                 title = {filter}
+                                 options = {filterOptionsObj[filter]}
+                                 openFilters = {openFilters}
+                                 setOpenFilters = {setOpenFilters}
+                                 key = {Math.random()}
+                                 setMevFilters = {setSelectedFilters}
+                                 mevFilters = {selectedFilters}
+                                 >
+                                </Filter>
                             )
                         }
                     </div>
-                    <ProductsList products={products} loading={loading}></ProductsList>
+                    <ProductsList products={products} loading={loading} selectedFilters = {selectedFilters}></ProductsList>
                 </section>
             }
             </>

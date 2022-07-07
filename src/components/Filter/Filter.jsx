@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
-import { useState } from 'react';
 import "./Filter.css"
 import arrowPic from "./filterRes/arrow.png";
 
-export function Filter ({title, options}) {
-    console.log(options);
+export function Filter ({title, options, setMevFilters, mevFilters, openFilters, setOpenFilters }){
 
-    const [ifShown, setShown] = useState(true);
-    const [checkedArr, setCheckedArr] = useState([]);
 
-    let listClassStr = ifShown ? "filter-options-list" : "list-closed";
-    let arrowClasslist = ifShown ?  "filter-show-toggle" : "filter-show-toggle arrow-rotated";
+    let listClassStr = openFilters[title] ? "filter-options-list" : "list-closed";
+    let arrowClasslist = openFilters[title] ?  "filter-show-toggle" : "filter-show-toggle arrow-rotated";
 
-    return(
+    return( 
         <div className='filter'>
            <span className='filter-title'>{title}
                 <img src={arrowPic} className = {arrowClasslist} alt="" onClick = {() => {
-                    setShown(!ifShown);
+                    setOpenFilters(Object.assign({}, Object.assign(openFilters, openFilters[title] = !openFilters[title])));
                 }} />
            </span>
             <div className={listClassStr}>
@@ -25,7 +21,7 @@ export function Filter ({title, options}) {
                         <div className='checkbox-set' key = {Math.random()}>
                             <div className='set__checkbox-component'
                                 onClick={() => {
-                                    let newArr = checkedArr;
+                                    let newArr = mevFilters[title];
 
                                     if(newArr.includes(option)){
                                         newArr = newArr.filter((elem) => elem !== option);
@@ -33,12 +29,12 @@ export function Filter ({title, options}) {
                                         newArr.push(option);
                                     }
 
-                                    setCheckedArr([].concat(newArr));
-                                    console.log(newArr);
+                                    let newLocalObj = {...mevFilters, [title]: newArr}
+                                    setMevFilters(newLocalObj);
                                     
                                 }}>
                                     {
-                                        checkedArr.includes(option) &&
+                                        mevFilters[title].includes(option) &&
                                         <div className='checkbox-ckeck'></div>
                                     }
                                 </div>
