@@ -3,6 +3,7 @@ import "./MultiView.css";
 import ItemCard from '../ItemCard/ItemCard';
 import Filter from '../Filter/Filter';
 import ProductsList from './ProductsList';
+import Range from '../Range/Range';
 
 const POSSIBLE_FILTERS = ["categories", "country", "available" ];
 
@@ -14,6 +15,7 @@ export function MultiView (props) {
     const [filterOptionsObj, setFilterOptionsObj] = useState({});
     const [selectedFilters, setSelectedFilters] = useState({});
     const [openFilters, setOpenFilters] = useState({});
+    const [priceFilter, setPriceFilter] = useState({min: null, max: null});
 
     useEffect(() => {
         setLoading(true);
@@ -56,12 +58,17 @@ export function MultiView (props) {
 
     return(
             <>
-            {products &&
+            {products.length !== 0 &&
                 <section className='multi-page'>
                     <div className='filters-column'>    
                         <div className='filters-title'>
                             Goods filters
                         </div>
+
+                        <Range products={products} 
+                        setPriceFilter = {setPriceFilter}>
+
+                        </Range>
                         
                         {Object.keys(filterOptionsObj).length && 
                             POSSIBLE_FILTERS.map((filter) => 
@@ -72,13 +79,16 @@ export function MultiView (props) {
                                  setOpenFilters = {setOpenFilters}
                                  key = {Math.random()}
                                  setMevFilters = {setSelectedFilters}
-                                 mevFilters = {selectedFilters}
-                                 >
+                                 mevFilters = {selectedFilters}>
                                 </Filter>
                             )
                         }
                     </div>
-                    <ProductsList products={products} loading={loading} selectedFilters = {selectedFilters}></ProductsList>
+                    <ProductsList products={products} loading={loading}
+                     selectedFilters = {selectedFilters}
+                     priceFilter = {priceFilter}>
+
+                     </ProductsList>
                 </section>
             }
             </>

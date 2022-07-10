@@ -5,12 +5,13 @@ import withLoader from "../../hocs/withLoader/withLoader";
 
 import "./MultiView.css";
 
-const ProductList = ({products, selectedFilters}) => {
-    return <div className='shown-items'>
-        {ifEmpty(selectedFilters) && products.map(product => <ItemCard item={product} key={product.id} />)}
-        { !ifEmpty(selectedFilters) && formItemsSet(products, selectedFilters).length === 0 ?
+const ProductList = ({products, selectedFilters, priceFilter}) => {
+
+    return  <div className='shown-items'>
+        {ifEmpty(selectedFilters) && formItemsSet(products, selectedFilters, priceFilter, true).map(product => <ItemCard item={product} key={product.id} />)}
+        { !ifEmpty(selectedFilters) && formItemsSet(products, selectedFilters, priceFilter).length === 0 ?
          <span className="no-items-found-text">No items found :(</span> :
-        formItemsSet(products, selectedFilters).map(product => <ItemCard item={product} key={product.id} />)}
+        formItemsSet(products, selectedFilters, priceFilter).map(product => <ItemCard item={product} key={product.id} />)}
     </div> 
 };
 
@@ -25,9 +26,23 @@ const ifEmpty = (obj) => {
     }
 }
 
-const formItemsSet = (products, filters) => {
+const formItemsSet = (products, filters, priceFilter, onlyPrice = false) => {
+
+    console.log("formItemsSet list pricefilter: ");
+    console.log(priceFilter);
+
     let finalArr = [];
     let filterKeys = Object.keys(filters);
+
+    if(onlyPrice){
+        products.forEach((item) => {
+            if((item.price >= priceFilter.min) && (item.price <= priceFilter.max)){
+                finalArr.push(item);
+            }
+        })
+
+        return finalArr;
+    }
 
     products.forEach((item) => {
         let currentItem = null;
@@ -35,9 +50,9 @@ const formItemsSet = (products, filters) => {
         for(let i = 0; i < filterKeys.length; i++) {
             if(filters[filterKeys[i]].length !== 0){
 
-                if(filters[filterKeys[i]].every((elem) => 
+                if((filters[filterKeys[i]].every((elem) => 
                     item[filterKeys[i]].includes(elem)
-                )){
+                )) && (item.price >= priceFilter.min) && (item.price <= priceFilter.max)){
                     currentItem = true;
                 } else {
                     currentItem = false;
