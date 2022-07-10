@@ -4,8 +4,10 @@ import ItemCard from '../ItemCard/ItemCard';
 import Filter from '../Filter/Filter';
 import ProductsList from './ProductsList';
 import Range from '../Range/Range';
+import Dropdown from '../Dropdown/Dropdown';
 
 const POSSIBLE_FILTERS = ["categories", "country", "available" ];
+const SORTING_OPTIONS = ["rating", "price", "alphabet", "reviews"];
 
 export function MultiView (props) {
 
@@ -16,6 +18,7 @@ export function MultiView (props) {
     const [selectedFilters, setSelectedFilters] = useState({});
     const [openFilters, setOpenFilters] = useState({});
     const [priceFilter, setPriceFilter] = useState({min: null, max: null});
+    const [currentSort, setCurrentSort] = useState(SORTING_OPTIONS[0]);
 
     useEffect(() => {
         setLoading(true);
@@ -57,8 +60,13 @@ export function MultiView (props) {
     }
 
     return(
-            <>
+            <> 
             {products.length !== 0 &&
+                <>                     
+                <Dropdown sortingOptions={SORTING_OPTIONS}
+                setCurrentSort = {setCurrentSort}>
+                </Dropdown>
+
                 <section className='multi-page'>
                     <div className='filters-column'>    
                         <div className='filters-title'>
@@ -67,7 +75,6 @@ export function MultiView (props) {
 
                         <Range products={products} 
                         setPriceFilter = {setPriceFilter}>
-
                         </Range>
                         
                         {Object.keys(filterOptionsObj).length && 
@@ -84,12 +91,16 @@ export function MultiView (props) {
                             )
                         }
                     </div>
-                    <ProductsList products={products} loading={loading}
+                    
+                    <ProductsList
+                    products={products} loading={loading}
                      selectedFilters = {selectedFilters}
-                     priceFilter = {priceFilter}>
-
+                     priceFilter = {priceFilter}
+                     currentSort = {currentSort}
+                     SORTING_OPTIONS = {SORTING_OPTIONS}>
                      </ProductsList>
                 </section>
+                </>
             }
             </>
 

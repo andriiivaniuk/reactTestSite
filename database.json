@@ -90,6 +90,37 @@
                 "Appearance and flavour": "It is eaten either raw or cooked. Broccoli is a particularly rich source of vitamin C and vitamin K. Contents of its characteristic sulfur-containing glucosinolate compounds, isothiocyanates and sulforaphane, are diminished by boiling but are better preserved by steaming, microwaving or stir-frying.[3]",
                 "Season": "The majority of broccoli cultivars are cool-weather crops that do poorly in hot summer weather. Broccoli grows best when exposed to an average daily temperature between 18 and 23 °C (64 and 73 °F).[18][19] When the cluster of flowers, also referred to as a head of broccoli, appear in the center of the plant, the cluster is generally green. Garden pruners or shears are used to cut the head about 25 mm (1 in) from the tip. Broccoli should be harvested before the flowers on the head bloom bright yellow.[20]"
             }
+        },
+        {
+            "id": "item3",
+            "available": "true",
+            "name": "Brown Bread",
+            "categories": ["bread", "food"],
+            "pictures": [
+                "/src/Items/Photos/brown-bread/brown-bread0.jpg",
+                "/src/Items/Photos/brown-bread/brown-bread1.jpg",
+                "/src/Items/Photos/brown-bread/brown-bread2.jpg",
+                "/src/Items/Photos/brown-bread/brown-bread3.jpg",
+                "/src/Items/Photos/brown-bread/brown-bread4.jpg"
+            ],
+            "price": "1.80",
+            "units": "loaf",
+            "rating": "5",
+            "reviews": "15",
+            "description": "Brown bread is bread made with significant amounts of whole grain flour, usually wheat, and sometimes dark-coloured ingredients such as molasses or coffee. In Canada, Ireland and South Africa, it is whole wheat bread; in the Maritimes and New England, it is bread made with molasses. In some regions of the US, brown bread is called wheat bread to complement white bread.Whole wheat flours that contain raw wheat germ, instead of toasted germ, have higher levels of glutathione, and thus result in lower loaf volumes.[1]",
+            "trademark": "Nice bread",
+            "cultivar": "Brown",
+            "country": "Slovenia",
+            "options": {
+                "color": ["brown", "yellow"],
+                "package": ["paper bag", "plastic bag" , "paper box"]
+            },
+            "specs": {
+                "General info": "Historically, brown meal was what remained after about 90% of the coarse,",
+                "Appearance and flavour": "The brown colour of whole grain breads is caused by cerealine, a discovery attributed to Hippolyte Mège-Mouriès of France.[5][8] Cerealine, considered by Mouriès an active principal or ferment similar in action to diastase,[8] came from the cereal layer of rectangular cells that millers considered a part of bran: later it was alternatively called the aleurone layer.[9] In a statement attributed to Mouriès, if the cerealine is neutralized, white bread can be made from bran-containing flour.[5]",
+                "Season": "The majority of broccoli cultivars are cool-weather crops that do poorly in hot summer weather. Broccoli grows best when exposed to an average daily temperature between 18 and 23 °C (64 and 73 °F).[18][19] When the cluster of flowers, also referred to as a head of broccoli, appear in the center of the plant, the cluster is generally green. Garden pruners or shears are used to cut the head about 25 mm (1 in) from the tip. Broccoli should be harvested before the flowers on the head bloom bright yellow.[20]"
+            }
         }
+        
     ]
 }
