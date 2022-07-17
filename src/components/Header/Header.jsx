@@ -33,12 +33,14 @@ const getItemsAmount = (selectorObj) => {
 function Header (props) {
 
     const [basketNum, setBasketNum] = useState(0);
-
     const currentBasket = useSelector(state => state.basket);
+    const state = useSelector(state => state);
+
+    console.log(state.basket);
 
     useEffect(() => {
         setBasketNum(getItemsAmount(currentBasket));
-    }, [currentBasket])
+    }, [state])
 
     return ( 
         <header className='header'>

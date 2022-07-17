@@ -12,12 +12,6 @@ export const BasketList = ({products, currentBasket}) => {
     
     const [basketSum, setBasketSum] = useState(0);
     const [basket, setBasket] = useState(currentBasket);
-    
-
-    if(products.length === 0) {
-        return null;
-    }
-
     const dispatch = useDispatch();
     const stateBasket = useSelector(state => state.basket);
 
@@ -33,7 +27,8 @@ export const BasketList = ({products, currentBasket}) => {
         }
 
         setBasketSum(finalSum);
-        dispatch(actionCreators.setBasket(basket));
+        // dispatch(actionCreators.setBasket(basket));
+        
         
     }, [basket]);
 
@@ -51,16 +46,29 @@ export const BasketList = ({products, currentBasket}) => {
         )
         
         setBasket(Object.assign({}, newBasket));
-        
+        dispatch(actionCreators.setBasket(newBasket));
         localStorage.setItem("basket", JSON.stringify(newBasket));
     }
 
     const deleteItem = (id) => {
         let oldBasket = currentBasket;
+        console.log("old basket:")
+        console.log(oldBasket)
+
         delete oldBasket[id];
 
-        localStorage.setItem("basket", JSON.stringify(oldBasket));
-        setBasket(Object.assign({}, oldBasket));
+        
+        
+        let newObj = {};
+        Object.assign(newObj, oldBasket);
+
+        localStorage.setItem("basket", JSON.stringify(newObj));
+        dispatch( actionCreators.setBasket(newObj));
+        setBasket(newObj);
+        
+        console.log("new basket:")
+        console.log(newObj)
+        
     }
     
     return(

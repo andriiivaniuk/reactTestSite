@@ -2,9 +2,9 @@ export const basketReducer = (store = {}, action) => {
     
     switch (action.type) {
         case "SET_BASKET" :
-            console.log("current basket state: ");
-            console.log({...store, ...action.payload});
-            return {...store,  ...action.payload}
+            let final = {};
+            Object.assign(final, action.payload);
+            return final;
             
         case "ADD_PRODUCT" :
             store.basket = {...store.basket, ...action.payload}
