@@ -29,12 +29,12 @@ export function MultiView (props) {
             setOpenFilters(Object.assign(openFilters, {[POSSIBLE_FILTERS[i]]: true}));
         }
         
-        console.log(openFilters);
+        // console.log(openFilters);
 
     }, []);
 
     useEffect(() => {
-        console.log(selectedFilters);
+        // console.log(selectedFilters);
     }, [selectedFilters]);
 
     const fetchStorage = async () => {
@@ -131,6 +131,6 @@ const formFiltersArr = (items) => {
 
     });
 
-    console.log(finalObj);
+    // console.log(finalObj);
     return finalObj;
 }

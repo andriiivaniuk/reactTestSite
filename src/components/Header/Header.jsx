@@ -8,7 +8,37 @@ import cartPic from "./HeaderRes/cart-icon.png";
 import arrowPic from "./HeaderRes/arrow-icon.png";
 import personIcon from "./HeaderRes/personal-icon.png"
 
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useState } from 'react';
+import { useEffect } from 'react';
+
+const getItemsAmount = (selectorObj) => {
+    
+    let obj = selectorObj;
+
+    if(!obj || Object.keys(obj).length === 0) {
+        obj = JSON.parse(localStorage.getItem("basket"));
+    }
+    
+    let values = Object.values(obj);
+    let finalVal = 0;
+
+    for(let i = 0; i < values.length; i++) {
+        finalVal+= values[i];
+    }
+
+    return finalVal;
+}
+
 function Header (props) {
+
+    const [basketNum, setBasketNum] = useState(0);
+
+    const currentBasket = useSelector(state => state.basket);
+
+    useEffect(() => {
+        setBasketNum(getItemsAmount(currentBasket));
+    }, [currentBasket])
 
     return ( 
         <header className='header'>
@@ -86,7 +116,7 @@ function Header (props) {
                             </a>
                             <div className='cart-set__indicator-circle'>
                                 <span className='cart-set__indicator-num'>
-                                    0
+                                    {basketNum}
                                 </span>
                             </div>
                         </div>

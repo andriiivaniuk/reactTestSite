@@ -6,9 +6,16 @@ import scalesPic from "./ItemCardRes/scales-icon.png";
 import cartPic from "./ItemCardRes/cart-icon.png";
 
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux/es/exports';
+import { useDispatch } from 'react-redux/es/exports';
+import { actionCreators } from '../../state';
+
+
 
 export function ItemCard (props){
     
+    const dispatch = useDispatch();
+
     return(
         <div  className='item-card'>
             <Link className='card-pic-wrapper'  to={`/products/${props.item.id}`}> 
@@ -47,7 +54,7 @@ export function ItemCard (props){
                     <img className='pics-set-pic'src={scalesPic} alt="" />
                 </div>
             </div>
-            <button className='card__add-to-cart-but' onClick={() => addItemToStorage(props.item.id)}>
+            <button className='card__add-to-cart-but' onClick={() => addItemToStorage(props.item.id, dispatch)}>
                 Add to cart
                 <img src={cartPic} className = "cart-pic" alt="" />
             </button>
@@ -57,10 +64,10 @@ export function ItemCard (props){
 
 export default ItemCard;
 
-const addItemToStorage = (id) => {
+const addItemToStorage = (id, dispatchFunc) => {
     let currentBasket = JSON.parse(localStorage.getItem("basket"));
 
-    if(localStorage.length === 0){
+    if(!currentBasket){
         localStorage.setItem("basket", JSON.stringify({
             [id]: 1
         }));
@@ -72,6 +79,8 @@ const addItemToStorage = (id) => {
     }
 
     console.log(localStorage.getItem("basket"));
+    dispatchFunc(actionCreators.setBasket(JSON.parse(localStorage.getItem("basket"))));
+    
 }
 
 const getRating = (num) => {

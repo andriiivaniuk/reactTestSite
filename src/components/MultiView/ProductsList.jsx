@@ -43,8 +43,8 @@ const ifEmpty = (obj) => {
 
 const formItemsSet = (products, filters, priceFilter, currentSort, onlyPrice = false) => {
 
-    console.log("formItemsSet list pricefilter: ");
-    console.log(priceFilter);
+    // console.log("formItemsSet list pricefilter: ");
+    // console.log(priceFilter);
 
     let finalArr = [];
     let filterKeys = Object.keys(filters);

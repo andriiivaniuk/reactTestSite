@@ -3,15 +3,23 @@ import withLoader from "../../hocs/withLoader/withLoader";
 import "./Basket.css"
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { actionCreators } from "../../state";
+
 
 export const BasketList = ({products, currentBasket}) => {
 
-    if(!products) {
+    
+    const [basketSum, setBasketSum] = useState(0);
+    const [basket, setBasket] = useState(currentBasket);
+    
+
+    if(products.length === 0) {
         return null;
     }
 
-    const [basketSum, setBasketSum] = useState(0);
-    const [basket, setBasket] = useState(currentBasket);
+    const dispatch = useDispatch();
+    const stateBasket = useSelector(state => state.basket);
 
     useEffect(() => {
 
@@ -25,8 +33,10 @@ export const BasketList = ({products, currentBasket}) => {
         }
 
         setBasketSum(finalSum);
+        dispatch(actionCreators.setBasket(basket));
         
     }, [basket]);
+
 
     const changeBasketAmount = (id, ifAdd) => {
         if(!ifAdd && currentBasket[id] == 1) {
@@ -41,6 +51,7 @@ export const BasketList = ({products, currentBasket}) => {
         )
         
         setBasket(Object.assign({}, newBasket));
+        
         localStorage.setItem("basket", JSON.stringify(newBasket));
     }
 

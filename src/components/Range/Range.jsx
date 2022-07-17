@@ -49,7 +49,7 @@ const Range = ({products, setPriceFilter}) => {
     }, [secondCircle]);
 
     if(ifCounted === false){
-        console.log(products);
+
         let min = parseFloat(products[0].price);
         let max = parseFloat(products[0].price);
 
