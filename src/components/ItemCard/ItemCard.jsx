@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux/es/exports';
 import { useDispatch } from 'react-redux/es/exports';
 import { actionCreators } from '../../state';
-
+import { setBasket, addProductToBasket, deleteProductFromBasket } from '../../state/action-creators';
 
 
 export function ItemCard (props){
@@ -65,22 +65,7 @@ export function ItemCard (props){
 export default ItemCard;
 
 const addItemToStorage = (id, dispatchFunc) => {
-    let currentBasket = JSON.parse(localStorage.getItem("basket"));
-
-    if(!currentBasket){
-        localStorage.setItem("basket", JSON.stringify({
-            [id]: 1
-        }));
-    }
-    else{
-        localStorage.setItem("basket", JSON.stringify(Object.assign(currentBasket,  {
-            [id]: currentBasket[id] ? currentBasket[id] + 1 : 1
-        })));
-    }
-
-    console.log(localStorage.getItem("basket"));
-    dispatchFunc(actionCreators.setBasket(JSON.parse(localStorage.getItem("basket"))));
-    
+    dispatchFunc(addProductToBasket(id));
 }
 
 const getRating = (num) => {

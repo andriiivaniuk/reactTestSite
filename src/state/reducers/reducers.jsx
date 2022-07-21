@@ -1,20 +1,36 @@
-export const basketReducer = (store = {}, action) => {
+export const basketReducer = (state = {}, action) => {
     
     switch (action.type) {
         case "SET_BASKET" :
-            let final = {};
-            Object.assign(final, action.payload);
+
+            let final = { ...action.payload }
             return final;
             
         case "ADD_PRODUCT" :
-            store.basket = {...store.basket, ...action.payload}
-            break;
+            if (state.hasOwnProperty(action.payload)) {
+                return { ...state, [action.payload]: state[action.payload] + 1 }
+            } else {
+                return { ...state, [action.payload]: 1 }
+            }
+        case "SUBSTRACT_PRODUCT":
+            if (state[action.payload] === 1) {
+                {
+                    let newState = {};
+                    newState = { ...state};
+                    delete newState[action.payload]
+                    return newState;
+                }
+            } else {
+                return { ...state, [action.payload]: state[action.payload] - 1 }
+            }
         case "DELETE_PRODUCT" : 
-            break;
+            let newState = {...{}, ...state};
+            delete newState[action.payload];
+            return newState;
 
         default:
             console.log("default switch: " + action.payload);
-            return store;
+            return state;
     }
 }
 

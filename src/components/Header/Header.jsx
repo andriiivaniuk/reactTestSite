@@ -12,35 +12,32 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-const getItemsAmount = (selectorObj) => {
-    
-    let obj = selectorObj;
+const getItemsAmount = (currentBasket) => {
+    if (localStorage.getItem("basket") !== null && localStorage.getItem("basket") !== undefined){
 
-    if(!obj || Object.keys(obj).length === 0) {
-        obj = JSON.parse(localStorage.getItem("basket"));
+        let finalAmount = 0;
+        let basketKeys = Object.keys(currentBasket);
+
+        for(let i = 0; i < basketKeys.length; i++ ){ 
+            finalAmount += currentBasket[basketKeys[i]];
+        }
+
+        return finalAmount;
+
+    } else {
+         return 0;
     }
-    
-    let values = Object.values(obj);
-    let finalVal = 0;
-
-    for(let i = 0; i < values.length; i++) {
-        finalVal+= values[i];
-    }
-
-    return finalVal;
 }
 
 function Header (props) {
 
     const [basketNum, setBasketNum] = useState(0);
-    const currentBasket = useSelector(state => state.basket);
-    const state = useSelector(state => state);
 
-    console.log(state.basket);
+    const currentBasket = useSelector(state => state.basket);
 
     useEffect(() => {
         setBasketNum(getItemsAmount(currentBasket));
-    }, [state])
+    }, [currentBasket])
 
     return ( 
         <header className='header'>

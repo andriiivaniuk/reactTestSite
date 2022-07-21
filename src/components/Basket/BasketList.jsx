@@ -2,80 +2,64 @@ import React, { useState } from "react";
 import withLoader from "../../hocs/withLoader/withLoader";
 import "./Basket.css"
 import { useEffect } from "react";
-import { useRef } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { actionCreators } from "../../state";
+import { substractProductInBasket, addProductToBasket, deleteProductFromBasket, setBasket } from "../../state/action-creators";
 
 
-export const BasketList = ({products, currentBasket}) => {
-
+export const BasketList = ({products}) => {
     
     const [basketSum, setBasketSum] = useState(0);
-    const [basket, setBasket] = useState(currentBasket);
     const dispatch = useDispatch();
+    const [basket, setbasket] = useState({});
     const stateBasket = useSelector(state => state.basket);
 
+
     useEffect(() => {
+        if(Object.keys(stateBasket).length === 0) {
+
+            let basketObj = JSON.parse(localStorage.getItem("basket"));
+            dispatch(setBasket(basketObj));
+            setbasket(basketObj);
+        }
 
         let finalSum = 0;
-        const basketKeys = Object.keys(basket);
+        let basketKeys = Object.keys(basket);
 
         for(let i = 0; i < basketKeys.length; i++) {
             let currentProd = products.find(elem => elem.id === basketKeys[i]);
-
             finalSum += (basket[basketKeys[i]] * currentProd.price);
+            
         }
 
         setBasketSum(finalSum);
-        // dispatch(actionCreators.setBasket(basket));
-        
-        
+
     }, [basket]);
 
+    useEffect(() => {
 
-    const changeBasketAmount = (id, ifAdd) => {
-        if(!ifAdd && currentBasket[id] == 1) {
-            return;
+        setbasket(stateBasket);
+        
+    }, [stateBasket]);
+
+    const changeBasketAmount = (id, ifAdd, dispatchFunc) => {
+        if (ifAdd) {
+            dispatchFunc(addProductToBasket(id));
+        } else {
+            if(basket[id] === 1) {return;}
+            dispatchFunc(substractProductInBasket(id));
         }
-
-        let oldBasket = currentBasket;
-        let newBasket = Object.assign(
-            oldBasket, {
-                [id]: ifAdd ? currentBasket[id] + 1 : currentBasket[id] -1
-            }
-        )
-        
-        setBasket(Object.assign({}, newBasket));
-        dispatch(actionCreators.setBasket(newBasket));
-        localStorage.setItem("basket", JSON.stringify(newBasket));
     }
 
-    const deleteItem = (id) => {
-        let oldBasket = currentBasket;
-        console.log("old basket:")
-        console.log(oldBasket)
-
-        delete oldBasket[id];
-
-        
-        
-        let newObj = {};
-        Object.assign(newObj, oldBasket);
-
-        localStorage.setItem("basket", JSON.stringify(newObj));
-        dispatch( actionCreators.setBasket(newObj));
-        setBasket(newObj);
-        
-        console.log("new basket:")
-        console.log(newObj)
-        
+    const deleteItem = (id, dispatchFunc) => {
+        dispatchFunc(deleteProductFromBasket(id));
     }
-    
+
     return(
-        <>{ Object.keys(basket).length === 0 && 
-            
+        <>
+        { (Object.keys(basket)).length === 0 &&  
         <p className="basket-empty-text">Your basket is empty :(</p> } 
-        
+
+        { (Object.keys(basket)).length !== 0 &&
         <div className="basket-list">
             {products.map((product, index) =>  basket[product.id] &&
                 <div className="list__item" key = {Math.random()}>
@@ -92,12 +76,12 @@ export const BasketList = ({products, currentBasket}) => {
                         ${product.price}
                     </span>
                     <div className="amount-set">
-                        <button className="lower-amount" onClick={() => changeBasketAmount(product.id, false)}>-1</button>
+                        <button className="lower-amount" onClick={() => changeBasketAmount(product.id, false, dispatch)}>-1</button>
                         <span className="list__amount">
                             x {basket[product.id]}
                         </span>
-                        <button className="upper-amount" onClick={() => changeBasketAmount(product.id, true)} >+1</button>
-                        <button className="delete-item" onClick={() => deleteItem(product.id)} > x </button>
+                        <button className="upper-amount" onClick={() => changeBasketAmount(product.id, true, dispatch)} >+1</button>
+                        <button className="delete-item" onClick={() => deleteItem(product.id, dispatch)} > x </button>
                     </div>
                     <span className="list__full-price">
                         ${(product.price * basket[product.id]).toFixed(2)}
@@ -111,6 +95,7 @@ export const BasketList = ({products, currentBasket}) => {
                 Final sum: ${basketSum.toFixed(2)}
             </span>
         </div>
+        }
         </>
     )
 }

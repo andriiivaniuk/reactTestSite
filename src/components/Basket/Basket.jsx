@@ -11,29 +11,28 @@ export const Basket = (props) => {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [currentBasket, setCurrentBasket] = useState({});
+    //const [currentBasket, setCurrentBasket] = useState({});
+    const stateBasket = useSelector(state => state.basket);
 
-    
     const dispatch = useDispatch();
-
+    
 
     useEffect(() => {
         fetchBasketItems();
     }, []);
 
-
-
     const fetchBasketItems = async () => {
 
-        let currentBasket = JSON.parse(localStorage.getItem("basket"));
-        setCurrentBasket(currentBasket);
-        // console.log(currentBasket);
+        let basketObj = stateBasket;
 
+        if(Object.keys(basketObj).length === 0) {
+            basketObj = JSON.parse(localStorage.getItem("basket"));
+        } 
         setLoading(true);
 
         let basketKeys;
-        if(currentBasket){
-            basketKeys = Object.keys(currentBasket);
+        if(Object.keys(basketObj).length !== 0){
+            basketKeys = Object.keys(basketObj);
         } else {
             basketKeys = [];
         }
@@ -69,7 +68,7 @@ export const Basket = (props) => {
         <h1 className="basket-title">
             Registering the order
         </h1>
-        <BasketList products={products} loading={loading} currentBasket = {currentBasket}  ></BasketList>
+        <BasketList products={products} loading={loading} ></BasketList>
     </div>
     )
 }

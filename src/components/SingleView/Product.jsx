@@ -160,20 +160,7 @@ function Product({product}) {
 export default withLoader(Product);
 
 const addItemToStorage = (id, amount) => {
-    let currentBasket = JSON.parse(localStorage.getItem("basket"));
-
-    if(localStorage.length === 0){
-        localStorage.setItem("basket", JSON.stringify({
-            [id]: amount
-        }));
-    }
-    else{
-        localStorage.setItem("basket", JSON.stringify(Object.assign(currentBasket,  {
-            [id]: currentBasket[id] + amount
-        })));
-    }
-
-    console.log(localStorage.getItem("basket"));
+    
 }
 
 
