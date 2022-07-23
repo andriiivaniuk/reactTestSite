@@ -7,10 +7,14 @@ import starPic from "./SingleRes/star-icon.png";
 import scalesPic from "./SingleRes/scales-icon.png";
 import likePic from "./SingleRes/like-icon.png";
 import "./SingleView.css";
+import { addProductToBasket } from "./../../state/action-creators"
+import { useDispatch } from 'react-redux';
+
 
 function Product({product}) {
     const [amount, setAmount] = useState(1);
     const [currentDesrTab, setDesrTab] = useState(0);
+    const dispatch = useDispatch();
     
     const descriptionTabsConfig = [
         "Description",
@@ -100,7 +104,7 @@ function Product({product}) {
                             <span className='current-amount'>{amount}</span>
                             <button className='change-amount-but' onClick={() => setAmount(amount + 1)}>+</button>
                         </div>
-                        <button className='add-to-cart-but' onClick={() => addItemToStorage(product.id, amount)}>
+                        <button className='add-to-cart-but' onClick={() => addItemToStorage(product.id, amount, dispatch)}>
                             Add to cart
                             <img className='add-to-cart__cart-pic' src = {cartPic}></img>
                         </button>
@@ -159,7 +163,11 @@ function Product({product}) {
 
 export default withLoader(Product);
 
-const addItemToStorage = (id, amount) => {
+const addItemToStorage = (id, amount, dispatchFunc) => {
+    
+    for(let i = 0; i < amount; i++) {
+        dispatchFunc(addProductToBasket(id));
+    }
     
 }
 

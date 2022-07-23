@@ -13,20 +13,14 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 const getItemsAmount = (currentBasket) => {
-    if (localStorage.getItem("basket") !== null && localStorage.getItem("basket") !== undefined){
+    const keys = Object.keys(currentBasket);
 
-        let finalAmount = 0;
-        let basketKeys = Object.keys(currentBasket);
+    let finalAmount = 0;
+    for(let i = 0; i < keys.length; i++) {
+        finalAmount += currentBasket[keys[i]];
+    } 
 
-        for(let i = 0; i < basketKeys.length; i++ ){ 
-            finalAmount += currentBasket[basketKeys[i]];
-        }
-
-        return finalAmount;
-
-    } else {
-         return 0;
-    }
+    return finalAmount;
 }
 
 function Header (props) {

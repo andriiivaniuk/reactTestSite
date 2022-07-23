@@ -3,11 +3,21 @@ import reducers from "./reducers/index";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import localStorageMiddleware from "./middleware/localStorageMiddleWare";
 
-const initialState = {}
+
+const getInitialStore = () => {
+    
+    const newState = {
+        basket: JSON.parse(localStorage.getItem("basket")),
+        products: {}
+    }
+
+    return newState;
+ };
 
 export const store = legacy_createStore(
     reducers,
-    composeWithDevTools(applyMiddleware(localStorageMiddleware))
+    getInitialStore(),
+    composeWithDevTools(applyMiddleware(localStorageMiddleware)),
 
 );
 
