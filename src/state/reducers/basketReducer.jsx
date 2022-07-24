@@ -29,7 +29,6 @@ export const basketReducer = (state = {}, action) => {
             return newState;
 
         default:
-            console.log("default switch: " + action.payload);
             return state;
     }
 }

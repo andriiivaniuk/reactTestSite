@@ -5,6 +5,9 @@ import Filter from '../Filter/Filter';
 import ProductsList from './ProductsList';
 import Range from '../Range/Range';
 import Dropdown from '../Dropdown/Dropdown';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { removeFilterCatFromState, addFilterCatToState, addPossibleFilter } from '../../state/action-creators';
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 
 const POSSIBLE_FILTERS = ["categories", "country", "available" ];
 const SORTING_OPTIONS = ["rating", "price", "alphabet", "reviews"];
@@ -20,6 +23,10 @@ export function MultiView (props) {
     const [priceFilter, setPriceFilter] = useState({min: null, max: null});
     const [currentSort, setCurrentSort] = useState(SORTING_OPTIONS[0]);
 
+    const currentSelectedFilters = useSelector(state => state.filters);
+    const dispatch = useDispatch();
+
+
     useEffect(() => {
         setLoading(true);
         fetchStorage();
@@ -27,14 +34,16 @@ export function MultiView (props) {
         for(let i = 0 ; i < POSSIBLE_FILTERS.length; i++) {
             setSelectedFilters(Object.assign(selectedFilters, {[POSSIBLE_FILTERS[i]]: [] }));
             setOpenFilters(Object.assign(openFilters, {[POSSIBLE_FILTERS[i]]: true}));
+            dispatch(addPossibleFilter(POSSIBLE_FILTERS[i]));
+
         }
         
-        // console.log(openFilters);
+        console.log(openFilters);
 
     }, []);
 
     useEffect(() => {
-        // console.log(selectedFilters);
+        console.log(selectedFilters);
     }, [selectedFilters]);
 
     const fetchStorage = async () => {
@@ -46,7 +55,7 @@ export function MultiView (props) {
 
                 let items = await storageProm.json();
                 setProducts(items);
-                // console.log(items);
+                //console.log(items);
                 setFilterOptionsObj(Object.assign({}, formFiltersArr(items)));
             }
         }
@@ -84,9 +93,7 @@ export function MultiView (props) {
                                  options = {filterOptionsObj[filter]}
                                  openFilters = {openFilters}
                                  setOpenFilters = {setOpenFilters}
-                                 key = {Math.random()}
-                                 setMevFilters = {setSelectedFilters}
-                                 mevFilters = {selectedFilters}>
+                                 key = {Math.random()}>
                                 </Filter>
                             )
                         }
@@ -94,7 +101,6 @@ export function MultiView (props) {
                     
                     <ProductsList
                     products={products} loading={loading}
-                     selectedFilters = {selectedFilters}
                      priceFilter = {priceFilter}
                      currentSort = {currentSort}
                      SORTING_OPTIONS = {SORTING_OPTIONS}>
@@ -131,6 +137,6 @@ const formFiltersArr = (items) => {
 
     });
 
-    // console.log(finalObj);
+    //console.log(finalObj);
     return finalObj;
 }

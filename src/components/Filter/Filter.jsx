@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import "./Filter.css"
 import arrowPic from "./filterRes/arrow.png";
 
-export function Filter ({title, options, setMevFilters, mevFilters, openFilters, setOpenFilters }){
+import { addFilterCatToState, removeFilterCatFromState } from '../../state/action-creators';
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useEffect } from 'react';
 
+export function Filter ({title, options, openFilters, setOpenFilters }){
+
+    const dispatch = useDispatch();
+    const currentSelectedFilters = useSelector(state => state.filters);
+
+    console.log("filter update")
 
     let listClassStr = openFilters[title] ? "filter-options-list" : "list-closed";
     let arrowClasslist = openFilters[title] ?  "filter-show-toggle" : "filter-show-toggle arrow-rotated";
@@ -21,20 +30,17 @@ export function Filter ({title, options, setMevFilters, mevFilters, openFilters,
                         <div className='checkbox-set' key = {Math.random()}>
                             <div className='set__checkbox-component'
                                 onClick={() => {
-                                    let newArr = mevFilters[title];
 
-                                    if(newArr.includes(option)){
-                                        newArr = newArr.filter((elem) => elem !== option);
-                                    } else{
-                                        newArr.push(option);
+                                    if(currentSelectedFilters[title].includes(option)){
+                                        dispatch(removeFilterCatFromState({[title]: option }));
+                                    } 
+                                    if(!currentSelectedFilters[title].includes(option)){
+                                        dispatch(addFilterCatToState({[title]: option }));
                                     }
-
-                                    let newLocalObj = {...mevFilters, [title]: newArr}
-                                    setMevFilters(newLocalObj);
                                     
                                 }}>
                                     {
-                                        mevFilters[title].includes(option) &&
+                                        currentSelectedFilters[title].includes(option) &&
                                         <div className='checkbox-ckeck'></div>
                                     }
                                 </div>

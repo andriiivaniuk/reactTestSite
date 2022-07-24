@@ -8,7 +8,8 @@ const getInitialStore = () => {
     
     const newState = {
         basket: JSON.parse(localStorage.getItem("basket")),
-        products: {}
+        products: {},
+        filters: {}
     }
 
     return newState;

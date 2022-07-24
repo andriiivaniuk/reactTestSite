@@ -4,8 +4,11 @@ import ItemCard from "../ItemCard/ItemCard";
 import withLoader from "../../hocs/withLoader/withLoader";
 
 import "./MultiView.css";
+import { useSelector } from "react-redux";
 
-const ProductList = ({products, selectedFilters, priceFilter, currentSort}) => {
+
+const ProductList = ({products, priceFilter, currentSort}) => {
+    const selectedFilters = useSelector(state => state.filters);
 
     if((ifEmpty(selectedFilters) && formItemsSet(products, selectedFilters, priceFilter, currentSort, true).length === 0)){
         return  <div className='shown-items'>
