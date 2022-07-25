@@ -7,28 +7,30 @@ import "./MultiView.css";
 import { useSelector } from "react-redux";
 
 
-const ProductList = ({products, priceFilter, currentSort}) => {
-    const selectedFilters = useSelector(state => state.filters);
+const ProductList = ({products, currentSort}) => {
 
-    if((ifEmpty(selectedFilters) && formItemsSet(products, selectedFilters, priceFilter, currentSort, true).length === 0)){
+    const selectedFilters = useSelector(state => state.filters);
+    const currentPriceRange = useSelector(state => state.priceRange);
+
+    if((ifEmpty(selectedFilters) && formItemsSet(products, selectedFilters, currentPriceRange, currentSort, true).length === 0)){
         return  <div className='shown-items'>
             <span className="no-items-found-text">No items found :(</span> 
         </div> 
     }
     
-    if((ifEmpty(selectedFilters) && formItemsSet(products, selectedFilters, priceFilter, currentSort, true).length !== 0)){
+    if((ifEmpty(selectedFilters) && formItemsSet(products, selectedFilters, currentPriceRange, currentSort, true).length !== 0)){
         return <div className='shown-items'>
-            {formItemsSet(products, selectedFilters, priceFilter, currentSort, true).map(product => <ItemCard item={product} key={product.id} />)}
+            {formItemsSet(products, selectedFilters, currentPriceRange, currentSort, true).map(product => <ItemCard item={product} key={product.id} />)}
         </div>
     }
 
-    if(!ifEmpty(selectedFilters) && formItemsSet(products, selectedFilters, priceFilter, currentSort).length === 0){
+    if(!ifEmpty(selectedFilters) && formItemsSet(products, selectedFilters, currentPriceRange, currentSort).length === 0){
         return <span className="no-items-found-text">No items found :(</span>
     }
 
-    if(!ifEmpty(selectedFilters) && formItemsSet(products, selectedFilters, priceFilter, currentSort).length !== 0){
+    if(!ifEmpty(selectedFilters) && formItemsSet(products, selectedFilters, currentPriceRange, currentSort).length !== 0){
         return <div className='shown-items'>
-        {formItemsSet(products, selectedFilters, priceFilter, currentSort).map(product => <ItemCard item={product} key={product.id} />)}
+        {formItemsSet(products, selectedFilters, currentPriceRange, currentSort).map(product => <ItemCard item={product} key={product.id} />)}
         </div>
     }
 };

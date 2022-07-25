@@ -8,10 +8,6 @@ import { actionCreators } from './state';
 
 function App() {
 
-  // const basket = useSelector((state) => state.basket);
-  // const dispath = useDispatch();
-  // const AC  = bindActionCreators(actionCreators, dispath);
-
   return (
 
       <div className="App">

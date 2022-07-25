@@ -2,14 +2,15 @@ import React from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { setMaxPriceFilter, setMinPriceFilter } from "../../state/action-creators";
 
 import './Range.css';
 
-const Range = ({products, setPriceFilter}) => {
-  
-    if(!products){
-        return null;
-    }
+const Range = ({products}) => {
+
+    const dispatch = useDispatch();
 
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
@@ -30,11 +31,20 @@ const Range = ({products, setPriceFilter}) => {
     const isDrowing = useRef();
     const rangeRef = useRef();
 
+    if(!products){
+        return null;
+    }
+
     useEffect(() => {
-        setPriceFilter({
-            min: currentMin.toFixed(2),
-            max: currentMax.toFixed(2)
-        });
+
+        // setPriceFilter({
+        //     min: currentMin.toFixed(2),
+        //     max: currentMax.toFixed(2)
+        // });
+
+        dispatch(setMaxPriceFilter(currentMax));
+        dispatch(setMinPriceFilter(currentMin));
+        
         
     }, [currentMax, currentMin]);
 
