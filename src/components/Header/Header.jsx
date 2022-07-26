@@ -23,15 +23,53 @@ const getItemsAmount = (currentBasket) => {
     return finalAmount;
 }
 
+const getItemPriceSum = async (currentBasket, setFinalSumFunc)  => {
+    let keys = Object.keys(currentBasket);
+    let values = Object.values(currentBasket);
+
+    if (keys.length === 0) {
+        return;
+    }
+
+    let finalSum = 0;
+
+    for (let i = 0; i < keys.length; i++) {
+        try {
+            
+            let pricePromise = await fetch(`http://localhost:3100/items/${keys[i]}`);
+            if (pricePromise.ok) {
+               
+                let obj = await pricePromise.json();
+                let productSum = obj.price;
+                productSum *= values[i];
+                finalSum += productSum;
+
+            }
+        }
+        catch {
+            alert("problem fetching items for the header price")
+        }
+        finally{
+
+        }
+    }
+
+    console.log(finalSum);
+    setFinalSumFunc(finalSum);
+
+}
+
 function Header (props) {
 
     const [basketNum, setBasketNum] = useState(0);
+    const [finalSumn, setFinalSum] = useState(0);
 
     const currentBasket = useSelector(state => state.basket);
 
     useEffect(() => {
         setBasketNum(getItemsAmount(currentBasket));
-    }, [currentBasket])
+        getItemPriceSum(currentBasket, setFinalSum);
+    }, [currentBasket]);
 
     return ( 
         <header className='header'>
@@ -116,7 +154,7 @@ function Header (props) {
                     </div>
                     <div className='info-set__make-order-set'>
                         <span className='make-order-set__sum'>
-                            0$
+                            $ {finalSumn.toFixed(2)}
                         </span>
                         <a className='make-order-set__button' href=''>
                             Make an order
