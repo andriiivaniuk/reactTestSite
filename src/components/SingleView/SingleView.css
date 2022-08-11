@@ -1,0 +1,300 @@
+.item{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(254, 254, 254,);
+}
+
+.item__pic-info-set{
+    padding-left: 165px;
+    padding-right: 165px;
+    display: flex;
+    gap: 10px;
+}
+
+.pic-info-set__pic-set{
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 50%;
+    gap: 10px;
+}
+
+.pic-set__main-image-wrapper{
+    flex-basis: 100%;
+    aspect-ratio: 2 / 1.5;
+}
+
+.pic-set__image-wrapper{
+    flex-grow: 1;
+    flex-basis: 22%;
+    aspect-ratio: 1 / 1;
+}
+
+.pic-set__img{
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.pic-info-set__info-set{
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    flex-grow: 1;
+
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-right: 30px;
+}
+
+.info-set__title-set{
+
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.title-set__title-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.title-info__title-stars-set{
+    align-items: center;
+    display: flex;
+    gap: 5px;
+}
+
+.title-stars-set__title{
+    font-weight: 700;
+    font-size: 1.5em;
+    color: black;
+    margin-right: 10px;
+}
+
+.title-stars-set__stars{
+    display: flex;
+    gap: 5px;
+}
+
+.title-set__available{
+    font-size: 1em;
+    color: green;
+}
+
+.title-set__not-available{
+    font-size: 1em;
+    color: brown;
+}
+
+.title-set__pic-set{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.title-set__pic-wrapper{
+
+}
+
+.item .line{
+    background-color: gainsboro;
+    height: 1px;
+    width: 100%;
+}
+
+.info-set__descrition-set{
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+.description-set__item{
+    padding-bottom: 7px;
+    display: flex;
+}
+
+.set-item__name{
+    font-weight: 600;
+    flex-basis: 35%;
+}
+
+.set-item__value{
+    color: gray;
+    flex-basis: 65%;
+}
+
+.info-set__options{
+    display: flex;
+    flex-direction: column;
+}
+
+.info-set__options-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.options-title{
+    flex-basis: 30%;
+    text-transform: capitalize;
+}
+
+.options{
+    flex-basis: 60%;
+    text-align: left;
+    padding: 5px;
+    font-size: 1.2em;
+    display: block;
+    max-width: 400px;
+    text-transform: capitalize;
+    font-family: 'Montserrat';
+}
+
+.info-set__price-area{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.price-area__price-bonus-set{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-bonus__price{
+    font-weight: 800;
+    font-size: 2em;
+    display: block;
+}
+
+.price-units{
+    font-size: 0.6em;
+    font-weight: 500;
+    color: gray;
+}
+
+.buy-buttons-set{
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    max-height: 50px;
+}
+
+.amount-to-buy-set{
+    display: flex;
+}
+
+.change-amount-but{
+    height: 50px;
+    width: 50px;
+    background-color: black;
+    color: aliceblue;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.current-amount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    background-color: ghostwhite;
+    color: black;
+    
+}
+
+.add-to-cart-but{
+    background-color: rgb(232,170,49);
+    padding-left: 40px;
+    padding-right: 40px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    font-family: 'Montserrat';
+}
+
+.add-to-cart__cart-pic{
+    height: 18px;
+    width: 18px;
+    filter: invert();
+}
+
+.buy-in-one-click-but{
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: black;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    font-family: 'Montserrat';
+}
+
+.item-description-tabs{
+    margin-top: 40px;
+    margin-left: 175px;
+    margin-right: 175px;
+
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.description-tabs__tabs-titles{
+    display: flex;
+    gap: 64px;
+    padding-bottom: 10px;
+}
+
+.tabs__title-set{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.tabs-titles__title{
+    cursor: pointer;
+    position: relative;
+}
+
+.title-selected-bar{
+    width: 100%;
+    background-color: orange;
+    height: 2px;
+    position: absolute;
+    top: 27px;
+    left: 0px;
+}
+
+
+.item-description-tabs__text-container{
+    display: block;
+    padding-top: 20px;
+}
+
+.text-container__specs-set{
+    display: flex;
+    flex-direction: column;
+}
+
+.text-container__spec-title{
+    font-weight: 700;
+    padding-top: 10px;
+}
+
+.text-container__spec-text{
+    
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
